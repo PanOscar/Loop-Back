@@ -1,0 +1,85 @@
+﻿<html>
+
+	<head>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<title>OSMA TECH. SLIDER</title>
+		
+			<style>
+			
+				.slider{
+					width:1564;
+					height:500px;
+					border:solid 1px red;
+					overflow:hidden;
+					display:flex;
+				}
+				.zawartosc{
+				position : relative;
+				display:flex;
+				}
+				.zawartosc img{
+				-moz-box-shadow: -10px 0px 55px rgba(0,0,0,0.5);
+				-webkit-box-shadow: -10px 0px 55px rgba(0,0,0,0.5);
+				box-shadow: -10px 0px 55px rgba(0,0,0,0.5);
+				}
+
+
+
+			</style>
+	</head>
+	
+	<body onload="">
+		
+		<div class="slider">
+		   <div class="zawartosc"> <!-- Do tego diva dodajesz zdjęcia, które mają sie wyświetlać w sliderze (o tej samej wielkości)-->
+			<img src="slide1.jpg" alt="1" id="zdj1">
+			<img src="slide2.jpg" alt="2" id="zdj1">
+			<img src="slide3.jpg" alt="3">
+			<img src="slide1.jpg" alt="4">
+		   </div>
+		</div>
+		<select id="select">
+			<option value="loop">loop</option>
+			<option value="back">back</option>
+		</select>
+		<script>
+$(document).ready(sliderFunction());
+		var img = document.getElementsByTagName('IMG');
+		var width = img.clientWidth;
+		var height = img.clientHeight;
+		
+		var opcja = $("#select").find(":selected");
+		
+		alert(width + '' + height);
+		var slider;
+		var rodzaj_animacji = 4;  /* 0=animacja "loop"  1> =animacja "back" 
+									jeśli używasz animacji "loop" to musisz mieć pierwsze i końcowe zdjęcie takie samo
+									jeśli używasz animacji "back" nie jest to wymagane ^^^^^^, im większa liczba tym wolniejsza animacja powrotu
+								*/
+		var czas_animacji = 15;  // Podajesz czas w sekundach
+		var widthZdjec = 1564; //Zmieniasz width zdjęcia
+		var iloscZdjec = 4;  //Zmieniasz ilość zdjęć
+		
+		
+		var ilosc = (iloscZdjec-1)*-widthZdjec;
+
+	function sliderFunction(){
+		
+		slider = setInterval(
+		
+		if(opcja.val()=="loop"){
+ 
+			$(".zawartosc").children("img").first().animate({
+				marginLeft: ilosc,
+			  }, czas_animacji*1000); 
+			$(".zawartosc").children("img").first().animate({marginLeft: "0"},rodzaj_animacji*1000);
+		
+		});
+	}
+
+
+		</script>
+	</body>
+
+</html>
