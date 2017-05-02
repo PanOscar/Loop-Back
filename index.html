@@ -29,7 +29,7 @@
 			</style>
 	</head>
 	
-	<body onload="">
+	<body >
 		
 		<div class="slider">
 		   <div class="zawartosc"> <!-- Do tego diva dodajesz zdjęcia, które mają sie wyświetlać w sliderze (o tej samej wielkości)-->
@@ -51,7 +51,7 @@ $(document).ready(sliderFunction());
 		
 		var opcja = $("#select").find(":selected");
 		
-		alert(width + '' + height);
+
 		var slider;
 		var rodzaj_animacji = 4;  /* 0=animacja "loop"  1> =animacja "back" 
 									jeśli używasz animacji "loop" to musisz mieć pierwsze i końcowe zdjęcie takie samo
@@ -65,17 +65,21 @@ $(document).ready(sliderFunction());
 		var ilosc = (iloscZdjec-1)*-widthZdjec;
 
 	function sliderFunction(){
-		
+
 		slider = setInterval(
-		
-		if(opcja.val()=="loop"){
- 
-			$(".zawartosc").children("img").first().animate({
-				marginLeft: ilosc,
-			  }, czas_animacji*1000); 
-			$(".zawartosc").children("img").first().animate({marginLeft: "0"},rodzaj_animacji*1000);
+			function(){
+
+
+				$(".zawartosc").children("img").first().animate({
+					marginLeft: ilosc,
+				  }, czas_animacji*1000);
+				$(".zawartosc").children("img").first().animate({
+					marginLeft: "0",
+				},rodzaj_animacji*1000);
+
 		
 		});
+
 	}
 
 
