@@ -2,7 +2,6 @@
 
 	<head>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 			<title>OSMA TECH. SLIDER</title>
 		
 			<style>
@@ -34,52 +33,40 @@
 		<div class="slider">
 		   <div class="zawartosc"> <!-- Do tego diva dodajesz zdjęcia, które mają sie wyświetlać w sliderze (o tej samej wielkości)-->
 			<img src="slide1.jpg" alt="1" id="zdj1">
-			<img src="slide2.jpg" alt="2" id="zdj1">
+			<img src="slide2.jpg" alt="2" >
 			<img src="slide3.jpg" alt="3">
 			<img src="slide1.jpg" alt="4">
 		   </div>
 		</div>
 		<select id="select">
-			<option value="loop">loop</option>
-			<option value="back">back</option>
+			<option value="0">loop</option>
+			<option value="4" selected>back</option>
 		</select>
 		<script>
-$(document).ready(sliderFunction());
-		var img = document.getElementsByTagName('IMG');
-		var width = img.clientWidth;
-		var height = img.clientHeight;
 		
-		var opcja = $("#select").find(":selected");
-		
-
-		var slider;
-		var rodzaj_animacji = 4;  /* 0=animacja "loop"  1> =animacja "back" 
+	$(document).ready(sliderFunction());
+		var rodzaj_animacji = $("select").find(":selected").val();  /* 0=animacja "loop"  1> =animacja "back" 
 									jeśli używasz animacji "loop" to musisz mieć pierwsze i końcowe zdjęcie takie samo
 									jeśli używasz animacji "back" nie jest to wymagane ^^^^^^, im większa liczba tym wolniejsza animacja powrotu
 								*/
 		var czas_animacji = 15;  // Podajesz czas w sekundach
-		var widthZdjec = 1564; //Zmieniasz width zdjęcia
-		var iloscZdjec = 4;  //Zmieniasz ilość zdjęć
-		
-		
+		var widthZdjec = document.getElementById("zdj1").clientWidth;
+		var iloscZdjec = $("div").find("img").length;
 		var ilosc = (iloscZdjec-1)*-widthZdjec;
 
 	function sliderFunction(){
-
-		slider = setInterval(
-			function(){
-
-
-				$(".zawartosc").children("img").first().animate({
-					marginLeft: ilosc,
-				  }, czas_animacji*1000);
-				$(".zawartosc").children("img").first().animate({
-					marginLeft: "0",
-				},rodzaj_animacji*1000);
-
 		
-		});
+		var slider = setInterval(
+			function(){
+						$(".zawartosc").children("img").first().animate({
+							marginLeft: ilosc,
+						  }, czas_animacji*1000);
+						$(".zawartosc").children("img").first().animate({
+							marginLeft: "0",
+						},rodzaj_animacji*1000);
 
+			}
+		)
 	}
 
 
